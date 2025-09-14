@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aathithya Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Developer</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hello, I'm <span>Aathithya S</span></h1>
+                
+                <!-- Dynamic subtitle -->
+                <h2 class="hero-subtitle">
+                    <span id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </h2>
+
+                <p class="hero-description">
+                    I create immersive digital experiences with cutting-edge technologies and a passion for clean code.
+                </p>
+                <div class="cta-buttons">
+                    <a href="Aathithya_resume.pdf" class="btn btn-primary">View My Resume</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="myself.png">
+                </div>
+                <div class="about-text">
+                    <h3>Crafting Digital Excellence</h3>
+                    <p>I'm a passionate full-stack developer with expertise in creating dynamic, user-friendly web applications. With a background in computer science and years of practical experience, I bring ideas to life through code.</p>
+                    <p>My journey in web development started over 1 year ago, and I've since worked with various technologies and frameworks to build everything from small business websites to complex web applications.</p>
+                    <p>When I'm not coding, you can find me contributing to open-source projects, learning new technologies, or sharing knowledge through tech blogs and tutorials.</p>
+                    <a href="#contact" class="btn btn-primary">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                <div class="education-card">
+                    <i class="fas fa-graduation-cap education-icon"></i>
+                    <div class="education-date">2022 - 2026</div>
+                    <h2>B.Tech</h2>
+                    <h3 class="education-degree">Artificial Intelligence and Data Science</h3>
+                    <div class="education-institution">Muthayammal Engineering College, Namakkal</div>
+                    <ul class="education-details">
+                        <li>CGPA: 7.6/10</li>
+                    </ul>
+                </div>
+                
+                <div class="education-card">
+                    <i class="fas fa-school education-icon"></i>
+                    <div class="education-date">2021 - 2022</div>
+                    <h3 class="education-degree">HSC</h3>
+                    <div class="education-institution">Jayam Vidhyalaya Hr.Sec.School, Harur</div>
+                    <ul class="education-details">
+                        <li>Percentage: 76.3%</li>
+                    </ul>
+                </div>
+                
+                <div class="education-card">
+                    <i class="fas fa-certificate education-icon"></i>
+                    <div class="education-date">2019 - 2020</div>
+                    <h3 class="education-degree">SSLC</h3>
+                    <div class="education-institution">Government Hr.School, Harur</div>
+                    <ul class="education-details">
+                        <li>Percentage: 73.6%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <i class="fas fa-briefcase experience-icon"></i>
+                    <div class="experience-date">Jan 2025 - Feb 2025</div>
+                    <h3 class="experience-role">Python Programmer Intern</h3>
+                    <div class="experience-company">YBI Foundation</div>
+                    <ul class="experience-description">
+                        <li>I contributed to developing and optimizing Python-based applications and scripts for data handling and automation tasks.</li>
+                        <li>Gained hands-on experience with core Python concepts including data structures, file operations, and exception handling.</li>
+                        <li>Worked on real-world projects that enhanced problem-solving and debugging skills.</li>
+                        <li>Strengthened ability to write clean, efficient code and collaborate effectively in a remote team environment.</li>
+                    </ul>
+                    <a href="YBI Inter Python Certificate.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-intro">
+                <p>I've worked with a wide range of technologies in the web development world. Here are some of my core competencies:</p>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skills-grid">
+                    <div class="skill-box">
+                        <i class="fab fa-html5 skill-icon html5"></i>
+                        <span class="skill-name">HTML5</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fab fa-css3-alt skill-icon css3"></i>
+                        <span class="skill-name">CSS3</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fab fa-js-square skill-icon js"></i>
+                        <span class="skill-name">JavaScript</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fab fa-java skill-icon java"></i>
+                        <span class="skill-name">Java</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fab fa-python skill-icon python"></i>
+                        <span class="skill-name">Python</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fas fa-database skill-icon mysql"></i>
+                        <span class="skill-name">MySQL</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fas fa-database skill-icon mongodb"></i>
+                        <span class="skill-name">MongoDB</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fab fa-react skill-icon react"></i>
+                        <span class="skill-name">React</span>
+                    </div>
+                    <div class="skill-box">
+                        <i class="fab fa-git-alt skill-icon git"></i>
+                        <span class="skill-name">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+        <section id="certifications">
+        <div class="container">
+            <h2 class="section-title neon-text-blue">My Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="aws logo.jpg" alt="AWS Academy Machine Learning Foundations">
+                    </div>
+                    <div class="certification-info">
+                        <h3>AWS Academy Machine Learning Foundations</h3>
+                        <div class="certification-issuer">AWS</div>
+                        <a href="AWS_Academy_Graduate___AWS_Academy_Machine_Learning_Foundations_Badge20240906-7-l4icwp.pdf" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="microsoft logo.png" alt="Microsoft Azure AI Certificate">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Microsoft Azure AI Fundamentals: Generative AI</h3>
+                        <div class="certification-issuer">Microsoft</div>
+                        <a href="Microsoft Azure AI.pdf" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <div    class="certification-card">
+                    <div class="certification-image">
+                        <img    src="ibm logo.png" alt="Getting Started with Artificial Intelligence">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Getting Started with Artificial Intelligence</h3>
+                        <div class="certification-issuer">IBM</div>
+                        <a href="IBM Certificate.pdf" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="sap logo.jpg" alt="Integrating SAP Sales Cloud and SAP Service Cloud with SAP S/4HANA">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Integrating SAP Sales Cloud and SAP Service Cloud with SAP S/4HANA</h3>
+                        <div class="certification-issuer">SAP</div>
+                        <a href="SAP Certificate.pdf" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="mongodb logo.png" alt="Introduction to MongoDB for Students">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Introduction to MongoDB for Students</h3>
+                        <div class="certification-issuer">MongoDB</div>
+                        <a href="MongoDB Certificate.pdf" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div  class="certification-image">
+                        <img  src="servicenow logo.jpg" alt="Micro Certification - Welcome to serviceNow">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Micro Certification - Welcome to serviceNow</h3>
+                        <div class="certification-issuer">serviceNow</div>
+                        <a href="servicenow micrp.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                  <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="ieee logo.png" alt="IEEE Education Leadership Summit">
+                    </div>
+                    <div class="certification-info">
+                        <h3>IEEE Education Leadership Summit</h3>
+                        <div class="certification-issuer">IEEE</div>
+                        <a href="ieee.jpg" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="sql logo.png" alt="SQL Basics">
+                    </div>
+                    <div class="certification-info">
+                        <h3>SQL Basics</h3>
+                        <div class="certification-issuer">HackerRank</div>
+                        <a href="sql_basic certificate.pdf" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="hackindia logo.jpg" alt="Web3 & AI Hackathon">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Web3 & AI Hackathon</h3>
+                        <div class="certification-issuer">HackIndia</div>
+                        <a href="hackindia.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="python logo.png" alt="Data Visualization in Python">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Data Visualization in Python</h3>
+                        <div class="certification-issuer">GUVI</div>
+                        <a href="guvi certificate.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="nptel logo.png" alt="Foundation of Cloud IOT Edge ML">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Foundation of Cloud IOT Edge ML</h3>
+                        <div class="certification-issuer">NPTEL</div>
+                        <a href="nptel.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="microsoft logo1.png" alt="Foundation Course on IR4.0 Technologies">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Foundation Course on IR4.0 Technologies</h3>
+                        <div class="certification-issuer">Microsoft & Edunet Foundation</div>
+                        <a href="techsaksham.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="powerbi logo.jpg" alt="Microsoft PowerBI for Business Intelligence">
+                    </div>
+                    <div class="certification-info">
+                        <h3>Microsoft PowerBI for Business Intelligence</h3>
+                        <div class="certification-issuer">Muthayammal Engineering College</div>
+                        <a href="powerbi work.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="ict logo.jpg" alt="8 Courses - Learnathon">
+                    </div>
+                    <div class="certification-info">
+                        <h3>8 Courses - Learnathon</h3>
+                        <div class="certification-issuer">ICT Academy</div>
+                        <a href="learnathon cert.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                 <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="fullstack.png" alt="FullStack development">
+                    </div>
+                    <div class="certification-info">
+                        <h3>full-stack development</h3>
+                        <div class="certification-issuer">NoviTech</div>
+                        <a href="NoviTech FullStack Certificate.png" class="certification-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="sales image.png">
+                    </div>
+                    <div class="project-info">
+                        <h3>Sales Forecasting Analysis using Machine Learning</h3>
+                        <p>By analyzing historical sales data, I was able to identify key patterns and improve prediction accuracy. The model significantly enhanced forecast reliability, supporting data-driven business decisions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Linear Regression</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="portfolio image.png">
+                    </div>
+                    <div class="project-info">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>The project involved training on developing my HTML, CSS, JavaScript and Web Technologies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="obj det image.jpg">
+                    </div>
+                    <div class="project-info">
+                        <h3>Object Detection using Deep Learning</h3>
+                        <p>The project involved training on annotated datasets to accurately identify and localize multiple objects within images.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">Convolutional Neural Networks(CNN)</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://placehold.co/600x400/3A506B/FFFFFF?text=E-Commerce" alt="Web Application">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Developed a full-stack e-commerce solution with user authentication, product management, and payment processing.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Talk About Your Project</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>aathithya594@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+91 6379450018</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dharmapuri, TamilNadu</span>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://github.com/aathi2004"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/aathithya102004/"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:aathithya594@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/aathi2004"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/aathithya102004/"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:aathithya594@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Aathithya Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
