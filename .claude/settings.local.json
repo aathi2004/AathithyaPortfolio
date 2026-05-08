@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(git merge *)",
+      "Bash(git checkout *)",
+      "Bash(gh api *)",
+      "PowerShell(gh api *)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"https://aathi2004.github.io/AathithyaPortfolio/\" -UseBasicParsing -TimeoutSec 10; Write-Output \"STATUS: $\\($r.StatusCode\\)\" } catch { Write-Output \"ERROR: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"https://aathithya-webs.netlify.app/\" -UseBasicParsing -TimeoutSec 15; Write-Output \"STATUS: $\\($r.StatusCode\\) | LENGTH: $\\($r.Content.Length\\)\" } catch { Write-Output \"ERROR: $\\($_.Exception.Message\\)\" })",
+      "PowerShell($r = Invoke-WebRequest -Uri \"https://aathithya-webs.netlify.app/\" -UseBasicParsing -TimeoutSec 15; if \\($r.Content -match \"Profitcast\"\\) { Write-Output \"Profitcast: PRESENT\" } else { Write-Output \"Profitcast: NOT YET DEPLOYED\" }; if \\($r.Content -match \"Infotact\"\\) { Write-Output \"Infotact: PRESENT\" } else { Write-Output \"Infotact: NOT YET DEPLOYED\" })",
+      "PowerShell($r = Invoke-WebRequest -Uri \"https://aathithya-webs.netlify.app/\" -UseBasicParsing -TimeoutSec 15; if \\($r.Content -match \"serviceNow Virtual Internship\"\\) { Write-Output \"ServiceNow orphan: STILL PRESENT \\(deploy in progress\\)\" } else { Write-Output \"ServiceNow orphan: REMOVED\" }; if \\($r.Content -match \"YBI Inter Python Certificate\"\\) { Write-Output \"YBI cert link: STILL PRESENT\" } else { Write-Output \"YBI cert link: REMOVED\" })",
+      "PowerShell($r = Invoke-WebRequest -Uri \"https://aathithya-webs.netlify.app/\" -UseBasicParsing -TimeoutSec 15; if \\($r.Content -match \"Virtual Outfit Visualization\"\\) { Write-Output \"Virtual Outfit: PRESENT on live site\" } else { Write-Output \"Virtual Outfit: NOT YET on live site\" }; if \\($r.Content -match \"Client-Report Engine\"\\) { Write-Output \"Client-Report Engine: PRESENT on live site\" } else { Write-Output \"Client-Report Engine: NOT YET on live site\" })",
+      "Bash(git *)",
+      "WebFetch(domain:aathithya-webs.netlify.app)",
+      "Bash(py --version)",
+      "Bash(python -m http.server 8000)",
+      "Bash(curl -s -o NUL -w \"HTTP %{http_code}  index size: %{size_download} bytes\\\\n\" http://localhost:8000/index.html)",
+      "Bash(curl -s http://localhost:8000/style.css)",
+      "Bash(findstr /C:\"skills-marquee\" /C:\"@keyframes skills-scroll\" /C:\"transform: scale\\(1.04\\)\")",
+      "Bash(cp \"C:\\\\Users\\\\Aathithya S\\\\OneDrive\\\\Pictures\\\\Screenshots\\\\Screenshot 2026-04-24 095517.png\" \"C:\\\\Users\\\\Aathithya S\\\\OneDrive\\\\Desktop\\\\AathithyaPortfolio\\\\virtual-outfit.png\")",
+      "Bash(cp \"C:\\\\Users\\\\Aathithya S\\\\OneDrive\\\\Pictures\\\\Screenshots\\\\Screenshot 2026-05-08 214909.png\" \"C:\\\\Users\\\\Aathithya S\\\\OneDrive\\\\Desktop\\\\AathithyaPortfolio\\\\client-report.png\")",
+      "Bash(python -m pip show pypdf)",
+      "Bash(python -m pip install --quiet pypdf)",
+      "Bash(python -c \"from pypdf import PdfReader; r=PdfReader\\('Aathithya_resume.pdf'\\); print\\(dict\\(r.metadata\\) if r.metadata else 'no metadata'\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python *)"
+    ]
+  }
+}
