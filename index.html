@@ -6,7 +6,7 @@
     <title>Aathithya Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=marquee1">
 </head>
 <body>
     <!-- Navigation -->
@@ -170,42 +170,82 @@
             </div>
             
             <div class="skills-container">
-                <div class="skills-grid">
-                    <div class="skill-box">
-                        <i class="fab fa-html5 skill-icon html5"></i>
-                        <span class="skill-name">HTML5</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fab fa-css3-alt skill-icon css3"></i>
-                        <span class="skill-name">CSS3</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fab fa-js-square skill-icon js"></i>
-                        <span class="skill-name">JavaScript</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fab fa-java skill-icon java"></i>
-                        <span class="skill-name">Java</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fab fa-python skill-icon python"></i>
-                        <span class="skill-name">Python</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fas fa-database skill-icon mysql"></i>
-                        <span class="skill-name">MySQL</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fas fa-database skill-icon mongodb"></i>
-                        <span class="skill-name">MongoDB</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fab fa-react skill-icon react"></i>
-                        <span class="skill-name">React</span>
-                    </div>
-                    <div class="skill-box">
-                        <i class="fab fa-git-alt skill-icon git"></i>
-                        <span class="skill-name">Git & GitHub</span>
+                <div class="skills-marquee" id="skillsMarquee">
+                    <div class="skills-track">
+                        <!-- Set 1 -->
+                        <div class="skill-box">
+                            <i class="fab fa-html5 skill-icon html5"></i>
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fab fa-css3-alt skill-icon css3"></i>
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fab fa-js-square skill-icon js"></i>
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fab fa-java skill-icon java"></i>
+                            <span class="skill-name">Java</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fab fa-python skill-icon python"></i>
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fas fa-database skill-icon mysql"></i>
+                            <span class="skill-name">MySQL</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fas fa-database skill-icon mongodb"></i>
+                            <span class="skill-name">MongoDB</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fab fa-react skill-icon react"></i>
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-box">
+                            <i class="fab fa-git-alt skill-icon git"></i>
+                            <span class="skill-name">Git & GitHub</span>
+                        </div>
+                        <!-- Set 2 (duplicated for seamless infinite loop) -->
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-html5 skill-icon html5"></i>
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-css3-alt skill-icon css3"></i>
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-js-square skill-icon js"></i>
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-java skill-icon java"></i>
+                            <span class="skill-name">Java</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-python skill-icon python"></i>
+                            <span class="skill-name">Python</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fas fa-database skill-icon mysql"></i>
+                            <span class="skill-name">MySQL</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fas fa-database skill-icon mongodb"></i>
+                            <span class="skill-name">MongoDB</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-react skill-icon react"></i>
+                            <span class="skill-name">React</span>
+                        </div>
+                        <div class="skill-box" aria-hidden="true">
+                            <i class="fab fa-git-alt skill-icon git"></i>
+                            <span class="skill-name">Git & GitHub</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -578,7 +618,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=marquee1"></script>
 </body>
 </html>
 
