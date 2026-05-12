@@ -20,24 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize theme toggle
     initThemeToggle();
-
-    // Initialize skills marquee touch handling
-    initSkillsMarquee();
 });
 
-// Pause the skills marquee while a touch is active so users can read cards
-// on mobile. Desktop hover-pause is handled in CSS.
-function initSkillsMarquee() {
-    const marquee = document.getElementById('skillsMarquee');
-    if (!marquee) return;
-
-    const pause = () => marquee.classList.add('is-paused');
-    const resume = () => marquee.classList.remove('is-paused');
-
-    marquee.addEventListener('touchstart', pause, { passive: true });
-    marquee.addEventListener('touchend', resume, { passive: true });
-    marquee.addEventListener('touchcancel', resume, { passive: true });
-}
+// The skills marquee auto-scrolls continuously (CSS animation). It pauses on
+// hover only for pointer devices via `@media (hover: hover)` in style.css, so
+// touch screens keep scrolling without interruption.
 
 // Theme toggle functionality
 function initThemeToggle() {

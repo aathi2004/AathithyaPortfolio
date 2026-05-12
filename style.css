@@ -41,6 +41,10 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    /* Guard against any horizontal page scroll (e.g. iOS Safari, where
+       `overflow-x: hidden` on <body> alone isn't always enough). `clip`
+       doesn't create a scroll container, so it won't affect scroll-padding. */
+    overflow-x: clip;
 }
 
 body {
@@ -472,11 +476,13 @@ nav {
     left: 0;
 }
 
-/* Experience Section */
+/* Experience Section — mobile: cards stacked one per row, full width */
 .experience-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
@@ -490,7 +496,8 @@ nav {
     overflow: hidden;
     flex: 1;
     min-width: 0;
-    max-width: 100%;
+    width: 100%;
+    max-width: 560px;
     box-shadow: var(--shadow);
 }
 
@@ -567,7 +574,13 @@ nav {
     margin-left: 0.5rem;
 }
 
-/* Skills Section — Infinite Marquee */
+/* ======================================================================
+   Skills Section
+   Mobile (default): cards wrap into a responsive grid — fits the viewport,
+   nothing overflows sideways, no clipped/faded edges.
+   >= 769px (tablets / laptops / desktops): the original infinite marquee
+   is restored unchanged (see the min-width media queries below).
+   ====================================================================== */
 .skills-intro {
     text-align: center;
     max-width: 800px;
@@ -575,46 +588,37 @@ nav {
 }
 
 .skills-container {
-    --marquee-duration: 24s;
-    --skill-card-size: 110px;
+    /* marquee tunables — only take effect once the marquee is restored (>=769px) */
+    --marquee-duration: 28s;
+    --skill-card-size: 160px;
     --skill-gap: 0.85rem;
+    --marquee-fade: 6%;
     width: 100%;
+    max-width: 100%;
     position: relative;
 }
 
 .skills-marquee {
     width: 100%;
-    overflow: hidden;
+    max-width: 100%;
+    overflow: hidden;          /* clips the marquee track at >=769px */
     position: relative;
-    padding: 1.5rem 0;
-    /* Edge fade — masks both ends so cards melt into the background */
-    -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        #000 8%,
-        #000 92%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        #000 8%,
-        #000 92%,
-        transparent 100%
-    );
+    padding: 1rem 0;
 }
 
+/* Mobile: skill cards stack/wrap into a centred grid (3 across on phones) */
 .skills-track {
-    display: flex;
-    width: max-content;
-    animation: skills-scroll var(--marquee-duration) linear infinite;
-    will-change: transform;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--skill-gap);
+    width: 100%;
+    max-width: 100%;
 }
 
-/* Pause on desktop hover OR when JS adds .is-paused (touch devices) */
-.skills-marquee:hover .skills-track,
-.skills-marquee.is-paused .skills-track {
-    animation-play-state: paused;
+/* The duplicated cards exist only to make the marquee loop seamless —
+   in grid mode they'd just be visible repeats, so hide them. */
+.skill-box[aria-hidden="true"] {
+    display: none;
 }
 
 @keyframes skills-scroll {
@@ -623,17 +627,16 @@ nav {
 }
 
 .skill-box {
-    flex: 0 0 auto;
-    width: var(--skill-card-size);
-    height: var(--skill-card-size);
-    margin-right: var(--skill-gap);
-    border-radius: 18px;
-    padding: 1.25rem 1rem;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    margin-right: 0;
+    border-radius: 16px;
+    padding: 0.75rem 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.85rem;
+    gap: 0.5rem;
     cursor: pointer;
     /* Glassmorphism */
     background: rgba(255, 255, 255, 0.55);
@@ -684,6 +687,10 @@ nav {
     font-weight: 600;
     color: var(--heading-color);
     letter-spacing: 0.2px;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
 /* Color coding for different technologies */
@@ -703,23 +710,52 @@ nav {
     }
 }
 
-/* Certifications Section */
+/* ======================================================================
+   Certifications Section — image-rendering normalisation + alignment
+   Mobile-first. Grid track `minmax(min(100%, 270px), 1fr)` never forces
+   horizontal overflow; >=2 columns appear once there's room (3-up on desktop).
+
+   THUMBNAIL NORMALISATION — every card gets an identical fixed-height frame
+   (130 / 150 / 180 px) and the logo inside is forced into the SAME bounded
+   target box (`width/height: 75%` + `object-fit: contain`), so a tiny logo
+   scales up and an oversized one scales down to the same optical size,
+   centred, never touching the edges, never stretched, never cropped.
+   A handful of source logos have an extreme aspect ratio or heavy baked-in
+   whitespace — those get a per-logo `[src*=...]` tweak below so they end up
+   visually weighted like the rest.
+
+   IMPORTANT: the frame uses a LIGHT neutral surface, not black. Several of
+   these source files are JPEGs with a white background baked in (e.g.
+   `salesforce logo.jpeg`, `aws logo.jpg`, `hackindia logo.jpg`, `sap logo.jpg`)
+   and several PNGs have near-black artwork — on `bg-black` those look like
+   mismatched white rectangles / disappear entirely. A light tile is what
+   these particular logos are designed to sit on. (Swap in transparent / mono
+   logo variants if you want a dark tile.)
+
+   The text body keeps its fixed 2-line title `min-height` (line-clamped) and a
+   bottom-pinned CTA, so issuer + CTA line up across every card in a row.
+   ====================================================================== */
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
-    gap: 1.75rem;
+    gap: 1.5rem;
     margin-top: 2rem;
+    width: 100%;
+    max-width: 100%;
 }
 
 .certification-card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
     display: flex;
     flex-direction: column;
+    gap: 1rem;                    /* the single step between thumbnail and body */
+    padding: 1rem;                /* uniform frame around the whole card */
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
     box-shadow: var(--shadow);
+    transition: var(--transition);
+    min-width: 0;                 /* let the grid item shrink — prevents blow-out */
+    max-width: 100%;
 }
 
 .certification-card:hover {
@@ -727,65 +763,111 @@ nav {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Fixed thumbnail frame — identical on every card (h-[130px] mobile) */
 .certification-image {
-    height: 110px;
+    height: 130px;
     width: 100%;
-    overflow: hidden;
+    max-width: 100%;
+    min-width: 0;
+    flex: 0 0 auto;               /* never grows/shrinks with the card's text */
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.04);
-    padding: 1.25rem 1rem;
+    justify-content: center;      /* logo perfectly centred on every card */
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;          /* rounded-xl */
+    background: #eef0f3;          /* light neutral stage — see note above */
 }
 
 .dark-mode .certification-image {
-    background: rgba(255, 255, 255, 0.06);
+    background: #f1f2f4;          /* keep the light stage in dark mode too, so the
+                                     white-bg / dark-art logos still read correctly */
 }
 
+/* Logo is normalised to the same target box on every card */
 .certification-image img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.5s;
+    display: block;
+    width: 75%;                   /* == max-w-[75%] / max-h-[75%] with up-scaling, */
+    height: 75%;                  /*    so small logos aren't left "zoomed out"     */
+    object-fit: contain;          /* aspect ratio kept — never stretched / cropped  */
+    transition: transform 0.3s ease;   /* duration-300 */
 }
 
-.certification-card:hover .certification-image img {
+/* subtle hover zoom — image only */
+.certification-card:hover .certification-image img,
+.certification-image:hover img {
     transform: scale(1.05);
 }
 
+/* ---- per-logo optical balancing (image layer only — no markup changes) ----
+   wide wordmark logos shouldn't span the full target box → smaller width */
+.certification-image img[src*="ieee"],
+.certification-image img[src*="nptel"],
+.certification-image img[src*="hackindia"],
+.certification-image img[src*="sql"] {
+    width: 60%;
+}
+/* well-balanced square-ish marks can fill a little more */
+.certification-image img[src*="python"],
+.certification-image img[src*="mongodb"] {
+    width: 82%;
+    height: 82%;
+}
+/* this JPEG has a graph-paper border + heavy internal padding baked in →
+   scale the artwork up so it carries the same visual weight as the others */
+.certification-image img[src*="salesforce"] {
+    width: 92%;
+    height: 92%;
+}
+
+/* 3 / 4 — text body: flex column, CTA bottom-pinned so it lines up across rows */
 .certification-info {
-    padding: 1.5rem;
-    flex-grow: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    gap: 0.35rem;                 /* rhythm between title and issuer */
+    min-width: 0;
 }
 
 .certification-info h3 {
-    font-size: 1.05rem;
-    margin-bottom: 0.8rem;
-    min-height: 0;
+    margin: 0;
+    color: var(--heading-color);  /* strongest element in the card's hierarchy */
+    font-size: 1rem;
+    line-height: 1.4;
+    min-height: 2.8rem;           /* reserve 2 lines so issuer/CTA align everywhere */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;        /* keep every title to 2 lines max */
+    overflow: hidden;
+    overflow-wrap: anywhere;
 }
 
 .certification-issuer {
+    margin: 0;
     font-weight: 500;
-    margin-bottom: 0.8rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
 }
 
-.certification-info p {
+.certification-info p {            /* (no cert card uses one — kept harmless) */
     margin-bottom: 1.5rem;
     opacity: 0.9;
     flex-grow: 1;
 }
 
 .certification-link {
-    margin-top: auto;
-    display: inline-block;
+    margin-top: auto;             /* pins the CTA to the card's bottom edge */
+    padding-top: 0.85rem;         /* min breathing space above it on short cards */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    max-width: 100%;
+    font-weight: 600;
+    font-size: 0.9rem;
     text-decoration: none;
-    font-weight: 500;
     transition: var(--transition);
+    overflow-wrap: anywhere;
 }
 
 .certification-link:hover {
@@ -793,7 +875,7 @@ nav {
 }
 
 .certification-link i {
-    margin-left: 0.5rem;
+    margin-left: 0;               /* spacing handled by the flex `gap` above */
 }
 
 /* Projects Section */
@@ -1096,9 +1178,16 @@ footer {
         padding: 1.5rem;
     }
 
-    .certification-info h3 {
-        font-size: 1.1rem;
-        min-height: 2.8rem;
+    /* slightly roomier card frame + a taller thumbnail once there's space
+       (h-[150px] tablet); the title keeps its fixed 2-line min-height from the
+       base rules, so card-to-card alignment is identical at every breakpoint */
+    .certification-card {
+        gap: 1.15rem;
+        padding: 1.15rem;
+    }
+
+    .certification-image {
+        height: 150px;
     }
 
     .project-info h3 {
@@ -1113,10 +1202,18 @@ footer {
         padding: 2rem;
     }
 
+    /* still grid mode here — give cards a touch more room / let them flow */
     .skills-container {
-        --skill-card-size: 130px;
         --skill-gap: 1rem;
-        --marquee-duration: 28s;
+    }
+
+    .skills-track {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .skill-box {
+        padding: 1rem 0.75rem;
+        gap: 0.7rem;
     }
 
     .skill-icon {
@@ -1180,7 +1277,15 @@ footer {
         transform: translateY(-5px);
     }
 
+    /* restore the original side-by-side experience layout on tablets/desktop */
+    .experience-container {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 2rem;
+    }
+
     .experience-card {
+        width: auto;
         min-width: 300px;
         max-width: 560px;
         padding: 2rem;
@@ -1194,6 +1299,58 @@ footer {
         --skill-card-size: 160px;
         --skill-gap: 1.5rem;
         --marquee-duration: 35s;
+        --marquee-fade: 8%;
+    }
+
+    /* Restore the original infinite marquee (unchanged desktop/tablet design) */
+    .skills-marquee {
+        padding: 1.5rem 0;
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--marquee-fade),
+            #000 calc(100% - var(--marquee-fade)),
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--marquee-fade),
+            #000 calc(100% - var(--marquee-fade)),
+            transparent 100%
+        );
+    }
+
+    .skills-track {
+        display: flex;
+        gap: 0;
+        width: max-content;
+        max-width: none;
+        animation: skills-scroll var(--marquee-duration) linear infinite;
+        will-change: transform;
+    }
+
+    /* the duplicated set is needed again for the seamless loop */
+    .skill-box[aria-hidden="true"] {
+        display: flex;
+    }
+
+    .skill-box {
+        flex: 0 0 auto;
+        width: var(--skill-card-size);
+        height: var(--skill-card-size);
+        aspect-ratio: auto;
+        margin-right: var(--skill-gap);
+        border-radius: 18px;
+        padding: 1.25rem 1rem;
+        gap: 0.85rem;
+    }
+
+    /* Pause on hover for pointer devices only — touch screens keep scrolling */
+    @media (hover: hover) {
+        .skills-marquee:hover .skills-track {
+            animation-play-state: paused;
+        }
     }
 
     .skill-icon {
@@ -1261,6 +1418,22 @@ footer {
 
     .experience-card {
         max-width: 400px;
+    }
+
+    /* desktop: certifications laid out as a clean 3-up grid (equal widths;
+       equal heights per row, with the "View Certificate" link bottom-aligned) */
+    .certifications-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+
+    .certification-card {
+        gap: 1.25rem;
+        padding: 1.25rem;
+    }
+
+    .certification-image {
+        height: 180px;        /* h-[180px] desktop */
     }
 }
 
