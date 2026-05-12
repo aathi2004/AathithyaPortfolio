@@ -111,19 +111,37 @@ function initAnimatedText() {
 function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
+    if (!hamburger || !navLinks) return;
+
+    const setOpen = (open) => {
+        hamburger.classList.toggle('active', open);
+        navLinks.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', String(open));
+    };
+
+    hamburger.addEventListener('click', () => {
+        setOpen(!navLinks.classList.contains('active'));
     });
-    
-    // Close mobile nav when clicking on a link
-    const navItems = document.querySelectorAll('.nav-links a');
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
+
+    // Keyboard support (Enter / Space) since the toggle is a div with role="button"
+    hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setOpen(!navLinks.classList.contains('active'));
+        }
+    });
+
+    // Close mobile nav when clicking a link
+    navLinks.querySelectorAll('a').forEach(item => {
+        item.addEventListener('click', () => setOpen(false));
+    });
+
+    // Close when tapping outside the menu
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            setOpen(false);
+        }
     });
 }
 

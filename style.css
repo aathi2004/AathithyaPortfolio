@@ -32,6 +32,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -41,6 +42,11 @@ body {
     overflow-x: hidden;
     transition: var(--transition);
     font-weight: 400;
+}
+
+/* Responsive media defaults */
+img {
+    max-width: 100%;
 }
 
 /* Typography Scale */
@@ -649,8 +655,8 @@ nav {
 /* Certifications Section */
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+    gap: 1.75rem;
     margin-top: 2rem;
 }
 
@@ -672,25 +678,27 @@ nav {
 }
 
 .certification-image {
-   
-    height: 80px;
-    width: 500px;
+    height: 110px;
+    width: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.05);
-    padding: 1rem;
-    position: relative;
-    right: 65px;
-   
+    background: rgba(0, 0, 0, 0.04);
+    padding: 1.25rem 1rem;
 }
+
+.dark-mode .certification-image {
+    background: rgba(255, 255, 255, 0.06);
+}
+
 .certification-image img {
-    height: 250px;;
-    width: 400px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     transition: transform 0.5s;
-   
 }
 
 .certification-card:hover .certification-image img {
@@ -741,7 +749,7 @@ nav {
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 2rem;
 }
 
@@ -937,33 +945,47 @@ footer {
     color: var(--muted-text);
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
+/* ======================================================================
+   Responsive Design
+   Breakpoints:  <=1024 tablet/landscape   <=768 portrait tablet/phablet
+                 <=480 phones              short/landscape screens
+   ====================================================================== */
+
+/* --- Tablets & small laptops --- */
+@media (max-width: 1024px) {
     .about-content,
     .contact-container {
         grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
-    
+
+    .about-text {
+        text-align: center;
+    }
+
     .hero-title {
         font-size: 3rem;
     }
-    
+
     .section-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
-    
+
     .education-container {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .education-card {
         width: 100%;
-        max-width: 500px;
+        max-width: 520px;
     }
-}
 
-@media (max-width: 768px) {
+    .experience-card {
+        max-width: 560px;
+    }
+
+    /* Collapse the nav into a hamburger menu on tablets */
     .nav-links {
         display: none;
         position: absolute;
@@ -972,54 +994,100 @@ footer {
         width: 100%;
         background: var(--card-bg);
         flex-direction: column;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
         text-align: center;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        gap: 0;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid var(--border-color);
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
     }
-    
+
     .nav-links.active {
         display: flex;
     }
-    
+
+    .nav-links a {
+        padding: 0.85rem 1rem;
+    }
+
     .hamburger {
         display: flex;
+        padding: 4px;
     }
-    
+
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
-    
+
     .hamburger.active span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
-    
+}
+
+/* --- Portrait tablets / large phones --- */
+@media (max-width: 768px) {
+    section {
+        padding: 4rem 1.5rem;
+    }
+
+    .nav-container {
+        padding: 0 1.5rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.5rem;
+        min-height: 50px;
     }
-    
+
+    .hero-description {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.7rem;
+    }
+
     .education-card {
         height: auto;
-        min-height: 200px;
+        min-height: 0;
     }
-    
+
     .education-details {
         display: block;
     }
-    
+
+    .education-card:hover {
+        transform: none;
+    }
+
     .about-image {
         margin: 0 auto 2rem;
+        height: 360px;
+        width: min(300px, 80vw);
+    }
+
+    .experience-card {
+        max-width: 100%;
+        min-width: 0;
+        padding: 1.5rem;
     }
 
     .skills-container {
@@ -1037,22 +1105,84 @@ footer {
     }
 }
 
+/* --- Phones --- */
 @media (max-width: 480px) {
     section {
         padding: 3rem 1rem;
+        min-height: auto;
     }
-    
+
+    #home {
+        min-height: 100vh;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
-    
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        min-height: 44px;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+        margin-bottom: 2rem;
+    }
+
     .cta-buttons {
         flex-direction: column;
+        align-items: stretch;
     }
-    
+
     .btn {
         width: 100%;
         text-align: center;
+    }
+
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-image {
+        width: 100%;
+        max-width: 280px;
+        height: 340px;
+    }
+
+    .education-card,
+    .experience-card {
+        min-width: 0;
+        padding: 1.5rem 1.25rem;
+    }
+
+    .certification-info h3 {
+        min-height: 0;
+        font-size: 1.05rem;
+    }
+
+    .project-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem 1.25rem;
     }
 
     .skills-container {
@@ -1067,6 +1197,21 @@ footer {
 
     .skill-name {
         font-size: 0.8rem;
+    }
+}
+
+/* --- Short / landscape screens: don't force full-height sections --- */
+@media (max-height: 600px) and (orientation: landscape) {
+    section {
+        min-height: auto;
+        padding-top: 5.5rem;
+        padding-bottom: 3rem;
+    }
+
+    #home {
+        min-height: auto;
+        padding-top: 6rem;
+        padding-bottom: 3rem;
     }
 }
 
